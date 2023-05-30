@@ -10,6 +10,7 @@ const Demo = () => {
     });
 
     const [allArticles, setAllArticles] = useState([]);
+    const [copied, setCopied] = useState("");
 
     const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
@@ -44,6 +45,12 @@ const Demo = () => {
             ...article,
             url: e.target.value,
         });
+    };
+
+    const handleCopy = (copyUrl) => {
+        setCopied(copyUrl);
+        navigator.clipboard.writeText(copyUrl);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     return (
@@ -91,9 +98,12 @@ const Demo = () => {
                             <p className="flex-1 truncate font-satoshi text-sm font-medium text-blue-700">
                                 {item.url}
                             </p>
-                            <div className="copy_btn">
+                            <div
+                                className="copy_btn"
+                                onClick={() => handleCopy(item.url)}
+                            >
                                 <img
-                                    src={copy}
+                                    src={copied === item.url ? tick : copy}
                                     alt="copy"
                                     className="h-[40%] w-[40%] object-contain"
                                 />
