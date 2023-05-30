@@ -80,6 +80,26 @@ const Demo = () => {
                 </form>
 
                 {/* Browse URL History */}
+                <div className="flex max-h-60 flex-col gap-1 overflow-y-auto">
+                    {allArticles.map((item, index) => (
+                        <div
+                            key={`link-${index}`}
+                            onClick={() => setArticle(item)}
+                            className="link_card"
+                        >
+                            <p className="flex-1 truncate font-satoshi text-sm font-medium text-blue-700">
+                                {item.url}
+                            </p>
+                            <div className="copy_btn">
+                                <img
+                                    src={copy}
+                                    alt="copy"
+                                    className="h-[40%] w-[40%] object-contain"
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
             {/* Display Results */}
         </section>
