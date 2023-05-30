@@ -32,6 +32,11 @@ const Demo = () => {
 
             setArticle(newArticle);
             setAllArticles(updatedAllArticles);
+
+            localStorage.setItem(
+                "articles",
+                JSON.stringify(updatedAllArticles)
+            );
         }
     };
     const handleChange = (e) => {
