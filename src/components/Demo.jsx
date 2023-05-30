@@ -21,7 +21,7 @@ const Demo = () => {
         if (articlesFromLocalStorage) setAllArticles(articlesFromLocalStorage);
     }, []);
 
-    const handleSearch = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const { data } = await getSummary({ articleUrl: article.url });
@@ -53,7 +53,7 @@ const Demo = () => {
             <div className="flex w-full flex-col gap-2">
                 <form
                     className="relative flex items-center justify-center"
-                    onSubmit={handleSearch}
+                    onSubmit={handleSubmit}
                 >
                     <img
                         src={linkIcon}
