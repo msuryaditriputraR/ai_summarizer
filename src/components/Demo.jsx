@@ -19,7 +19,7 @@ const Demo = () => {
         );
 
         if (articlesFromLocalStorage) setAllArticles(articlesFromLocalStorage);
-    });
+    }, []);
 
     const handleSearch = async (e) => {
         e.preventDefault();
