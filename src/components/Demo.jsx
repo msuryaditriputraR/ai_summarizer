@@ -102,6 +102,38 @@ const Demo = () => {
                 </div>
             </div>
             {/* Display Results */}
+            <div className="my-10 flex max-w-full items-center justify-center">
+                {isFetching ? (
+                    <img
+                        src={loader}
+                        alt=""
+                        className="h-20 w-20 object-contain"
+                    />
+                ) : error ? (
+                    <p className="text-center font-inter font-bold text-black">
+                        Well, that wasnt supposed to happen...
+                        <br />
+                        <span className="font-satoshi font-normal text-gray-700">
+                            {error?.data?.error}
+                        </span>
+                    </p>
+                ) : (
+                    article.summary && (
+                        <div className="flex flex-col gap-3">
+                            <h2 className="font-satoshi text-xl font-bold text-gray-600">
+                                Article{" "}
+                                <span className="blue_gradient">Summary</span>
+                            </h2>
+
+                            <div className="summary_box">
+                                <p className="font-inter text-sm font-medium text-gray-700">
+                                    {article.summary}
+                                </p>
+                            </div>
+                        </div>
+                    )
+                )}
+            </div>
         </section>
     );
 };
