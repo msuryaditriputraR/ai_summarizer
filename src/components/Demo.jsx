@@ -29,7 +29,11 @@ const Demo = () => {
 
         if (data?.summary) {
             const newArticle = { ...article, summary: data.summary };
-            const updatedAllArticles = [newArticle, ...allArticles];
+
+            const noDuplicateUrl = allArticles.filter(
+                (a) => a.url !== article.url
+            );
+            const updatedAllArticles = [newArticle, ...noDuplicateUrl];
 
             setArticle(newArticle);
             setAllArticles(updatedAllArticles);
