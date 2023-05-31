@@ -69,7 +69,7 @@ const Demo = () => {
     };
 
     return (
-        <section className="mt-16 w-full max-w-full">
+        <section className="mt-16 w-full max-w-full md:w-5/6 lg:w-3/4">
             {/* Search */}
 
             <div className="flex w-full flex-col gap-2">
