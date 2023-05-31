@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { copy, linkIcon, loader, tick } from "../assets";
+import { copy, linkIcon, loader, tick, trash } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
 
 const Demo = () => {
@@ -34,10 +34,7 @@ const Demo = () => {
             setArticle(newArticle);
             setAllArticles(updatedAllArticles);
 
-            localStorage.setItem(
-                "articles",
-                JSON.stringify(updatedAllArticles)
-            );
+            updateStorage(updatedAllArticles);
         }
     };
     const handleChange = (e) => {
@@ -51,6 +48,16 @@ const Demo = () => {
         setCopied(copyUrl);
         navigator.clipboard.writeText(copyUrl);
         setTimeout(() => setCopied(false), 2000);
+    };
+
+    const handleDelete = (e, itemUrl) => {
+        e.stopPropagation();
+        const updatedAllArticles = allArticles.filter(
+            (article) => article.url !== itemUrl
+        );
+
+        setAllArticles(updatedAllArticles);
+        updateStorage(updatedAllArticles);
     };
 
     return (
@@ -98,6 +105,16 @@ const Demo = () => {
                             <p className="flex-1 truncate font-satoshi text-sm font-medium text-blue-700">
                                 {item.url}
                             </p>
+                            <div
+                                className="flex items-center justify-center"
+                                onClick={(e) => handleDelete(e, item.url)}
+                            >
+                                <img
+                                    src={trash}
+                                    alt="delete"
+                                    className="h-[40%] w-[40%] object-contain"
+                                />
+                            </div>
                             <div
                                 className="copy_btn"
                                 onClick={() => handleCopy(item.url)}
